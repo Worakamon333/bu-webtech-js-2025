@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <title>Assignment #1 - Even/Odd/Zero</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 320px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      border-color: #74b9ff;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .check-btn {
+      background-color: #6c5ce7;
+      color: white;
+    }
+    .check-btn:hover {
+      background-color: #341f97;
+    }
+    .reset-btn {
+      background-color: #dfe6e9;
+      color: #2d3436;
+    }
+    .reset-btn:hover {
+      background-color: #b2bec3;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .even { color: #0984e3; }
+    .odd { color: #d63031; }
+    .zero { color: #00b894; }
+    .error { color: #e17055; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Check Integer Number</h1>
+    <input type="text" id="numberInput" placeholder="Enter integer number" />
+    <br>
+    <button class="check-btn" onclick="checkNumber()">Check Number</button>
+    <button class="reset-btn" onclick="resetInput()">Reset</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function checkNumber() {
+      const input = document.getElementById("numberInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (input === "") {
+        resultDiv.textContent = "Please enter a valid integer number";
+        resultDiv.className = "result error";
+        return;
+      }
+
+      if (!/^[-+]?\d+$/.test(input)) {
+        resultDiv.textContent = "Please enter a valid integer number";
+        resultDiv.className = "result error";
+        return;
+      }
+
+      const num = Number(input);
+
+      if (num === 0) {
+        resultDiv.textContent = "zero integer number";
+        resultDiv.className = "result zero";
+      } else if (num % 2 === 0) {
+        resultDiv.textContent = "even integer number";
+        resultDiv.className = "result even";
+      } else {
+        resultDiv.textContent = "odd integer number";
+        resultDiv.className = "result odd";
+      }
+    }
+
+    function resetInput() {
+      document.getElementById("numberInput").value = "";
+      const resultDiv = document.getElementById("result");
+      resultDiv.textContent = "";
+      resultDiv.className = "result";
+    }
+  </script>
+</body>
+</html>
